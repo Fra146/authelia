@@ -337,7 +337,7 @@ func handlerMain(config *schema.Configuration, providers middlewares.Providers) 
 	if !config.DuoAPI.Disable {
 		var duoAPI duo.API
 
-		if os.Getenv("ENVIRONMENT") == dev {
+		if os.Getenv("ENVIRONMENT") == dev || config.DuoAPI.SetInsecure {
 			duoAPI = duo.NewDuoAPI(duoapi.NewDuoApi(
 				config.DuoAPI.IntegrationKey,
 				config.DuoAPI.SecretKey,
